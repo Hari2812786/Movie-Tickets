@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Slot Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #confirmation-message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Gym Slot Booking</h1>
+    </header>
+
+    <section class="booking-container">
+        <h2>Book Your Slot</h2>
+        <form id="booking-form">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="time">Select Time Slot:</label>
+                <select id="time" required>
+                    <option value="6am-7am">6:00 AM - 7:00 AM</option>
+                    <option value="7am-8am">7:00 AM - 8:00 AM</option>
+                    <option value="8am-9am">8:00 AM - 9:00 AM</option>
+                    <option value="9am-10am">9:00 AM - 10:00 AM</option>
+                    <option value="10am-11am">10:00 AM - 11:00 AM</option>
+                </select>
+            </div>
+
+            <button type="submit">Book Slot</button>
+        </form>
+
+        <div id="confirmation-message">
+            <h3>Your booking was successful!</h3>
+            <p id="booking-details"></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Gym Booking System</p>
+    </footer>
+
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form data
+            let name = document.getElementById("name").value;
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+
+            // Validate input
+            if (!name || !date || !time) {
+                alert("Please fill all the fields.");
+                return;
+            }
+
+            // Show confirmation message
+            let confirmationMessage = document.getElementById("confirmation-message");
+            let bookingDetails = document.getElementById("booking-details");
+
+            bookingDetails.innerHTML = `Thank you, ${name}! Your gym slot is booked on ${date} from ${time}.`;
+            confirmationMessage.style.display = 'block';
+
+            // Reset form
+            document.getElementById("booking-form").reset();
+        });
+    </script>
+
+</body>
+</html>
